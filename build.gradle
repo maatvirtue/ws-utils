@@ -10,6 +10,10 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
+	compile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+	compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
+	compile 'io.github.lukehutch:fast-classpath-scanner:1.9.18'
+
 	//Logger
 	compile 'org.slf4j:slf4j-api:1.7.13'
 }
