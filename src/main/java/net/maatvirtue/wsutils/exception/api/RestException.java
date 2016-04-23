@@ -15,7 +15,7 @@ public abstract class RestException extends RuntimeException
 
 	public RestException(String message)
 	{
-		this(Response.Status.INTERNAL_SERVER_ERROR, message);
+		this(null, message);
 	}
 
 	public RestException(Response.Status httpStatus, String message)

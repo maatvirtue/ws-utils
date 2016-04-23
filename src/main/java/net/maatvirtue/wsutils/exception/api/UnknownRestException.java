@@ -12,6 +12,6 @@ public class UnknownRestException extends RestException
 	@Override
 	public String getMessage()
 	{
-		return "Unknown rest exception code \"" + getCode() + "\" with message \"" + getMessage() + "\"";
+		return "Unknown rest exception code \"" + getCode() + "\" with message \"" + super.getMessage() + "\"";
 	}
 }

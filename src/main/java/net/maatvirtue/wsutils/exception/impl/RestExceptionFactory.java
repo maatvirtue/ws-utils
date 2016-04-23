@@ -71,12 +71,62 @@ public class RestExceptionFactory
 	@SuppressWarnings("unchecked")
 	private void loadRestExceptionClass(Class<?> restExceptionMappingClass)
 	{
+		try
+		{
+			validateClassIsRestException(restExceptionMappingClass);
+			validateClassHasNoParamConstructor(restExceptionMappingClass);
+
+			String code = getCodeFromRestExceptionMapping(restExceptionMappingClass);
+
+			validateCode(restExceptionMappingClass, code);
+
+			restExceptions.put(code, (Class<? extends RestException>) restExceptionMappingClass);
+		}
+		catch(IllegalArgumentException exception)
+		{
+			logger.warn(exception.getMessage());
+		}
+		catch(RuntimeException exception)
+		{
+			logger.error("Error loading rest exception mapping class: " + restExceptionMappingClass, exception);
+		}
+	}
+
+	private void validateCode(Class<?> restExceptionMappingClass, String code)
+	{
+		if(code == null)
+			throw new IllegalArgumentException("Code must not be null");
+
+		if(restExceptions.containsKey(code))
+			throw new IllegalArgumentException("Duplicate code. Code \"" + code + "\" is used for class " +
+					restExceptions.get(code).getCanonicalName() + " and class " + restExceptionMappingClass.getCanonicalName() +
+					". Class " + restExceptionMappingClass.getCanonicalName() + " will be ignored.");
+	}
+
+	private void validateClassHasNoParamConstructor(Class<?> restExceptionMappingClass)
+	{
+		if(!hasNoParamConstructor(restExceptionMappingClass))
+			throw new IllegalArgumentException("Class " + restExceptionMappingClass.getCanonicalName() +
+					" does not have a no-param constructor. Ignoring class.");
+	}
+
+	private void validateClassIsRestException(Class<?> restExceptionMappingClass)
+	{
 		if(!RestException.class.isAssignableFrom(restExceptionMappingClass))
-			logger.warn("Class " + restExceptionMappingClass.getCanonicalName() + " is not a " + RestException.class.getCanonicalName());
+			throw new IllegalArgumentException("Class " + restExceptionMappingClass.getCanonicalName() + " is not a " + RestException.class.getCanonicalName() + ". Ignoring class.");
+	}
 
-		String code = getCodeFromRestExceptionMapping(restExceptionMappingClass);
-
-		restExceptions.put(code, (Class<? extends RestException>) restExceptionMappingClass);
+	private boolean hasNoParamConstructor(Class<?> clazz)
+	{
+		try
+		{
+			clazz.getConstructor();
+			return true;
+		}
+		catch(NoSuchMethodException e)
+		{
+			return false;
+		}
 	}
 
 	private String getCodeFromRestExceptionMapping(Class<?> restExceptionMappingClass)
