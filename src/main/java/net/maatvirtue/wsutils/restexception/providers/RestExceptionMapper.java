@@ -1,10 +1,10 @@
-package net.maatvirtue.wsutils.exception.providers;
+package net.maatvirtue.wsutils.restexception.providers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.maatvirtue.wsutils.exception.api.RestException;
-import net.maatvirtue.wsutils.exception.api.RestExceptionMapping;
-import net.maatvirtue.wsutils.exception.api.RestExceptionResponseBody;
+import net.maatvirtue.wsutils.restexception.api.RestException;
+import net.maatvirtue.wsutils.restexception.api.RestExceptionMapping;
+import net.maatvirtue.wsutils.restexception.api.RestExceptionResponseBody;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;

@@ -1,10 +1,10 @@
-package net.maatvirtue.wsutils.exception.impl;
+package net.maatvirtue.wsutils.restexception.impl;
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
-import net.maatvirtue.wsutils.exception.api.RestException;
-import net.maatvirtue.wsutils.exception.api.RestExceptionMapping;
-import net.maatvirtue.wsutils.exception.api.UnknownRestException;
-import net.maatvirtue.wsutils.exception.constants.Constants;
+import net.maatvirtue.wsutils.restexception.api.RestException;
+import net.maatvirtue.wsutils.restexception.api.RestExceptionMapping;
+import net.maatvirtue.wsutils.restexception.api.UnknownRestException;
+import net.maatvirtue.wsutils.restexception.constants.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

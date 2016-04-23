@@ -1,4 +1,4 @@
-package net.maatvirtue.wsutils.exception.constants;
+package net.maatvirtue.wsutils.restexception.constants;
 
 public class Constants
 {

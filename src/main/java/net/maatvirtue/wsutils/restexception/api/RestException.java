@@ -1,4 +1,4 @@
-package net.maatvirtue.wsutils.exception.api;
+package net.maatvirtue.wsutils.restexception.api;
 
 import javax.ws.rs.core.Response;
 

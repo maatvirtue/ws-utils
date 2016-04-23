@@ -1,7 +1,7 @@
-package net.maatvirtue.wsutils.exception.providers;
+package net.maatvirtue.wsutils.restexception.providers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.maatvirtue.wsutils.exception.api.RestExceptionResponseBody;
+import net.maatvirtue.wsutils.restexception.api.RestExceptionResponseBody;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;

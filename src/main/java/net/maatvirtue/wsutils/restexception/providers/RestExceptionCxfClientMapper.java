@@ -1,8 +1,8 @@
-package net.maatvirtue.wsutils.exception.providers;
+package net.maatvirtue.wsutils.restexception.providers;
 
-import net.maatvirtue.wsutils.exception.api.RestException;
-import net.maatvirtue.wsutils.exception.api.RestExceptionResponseBody;
-import net.maatvirtue.wsutils.exception.impl.RestExceptionFactory;
+import net.maatvirtue.wsutils.restexception.api.RestException;
+import net.maatvirtue.wsutils.restexception.api.RestExceptionResponseBody;
+import net.maatvirtue.wsutils.restexception.impl.RestExceptionFactory;
 import org.apache.cxf.jaxrs.client.ResponseExceptionMapper;
 
 import javax.ws.rs.core.Response;
