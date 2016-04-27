@@ -10,12 +10,17 @@ public abstract class RestException extends RuntimeException
 
 	public RestException()
 	{
-		this(null);
+		this(null, null, null);
+	}
+
+	public RestException(Throwable throwable)
+	{
+		super(throwable);
 	}
 
 	public RestException(String message)
 	{
-		this(null, message);
+		this(null, null, message);
 	}
 
 	public RestException(Response.Status httpStatus, String message)
