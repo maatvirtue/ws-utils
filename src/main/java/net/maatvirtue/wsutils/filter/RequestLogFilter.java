@@ -2,23 +2,33 @@ package net.maatvirtue.wsutils.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.ext.Provider;
 import java.io.IOException;
+import java.net.URI;
 
-public class RequestLogFilter extends OncePerRequestFilter
+@Provider
+public class RequestLogFilter implements ContainerRequestFilter
 {
-	private Logger logger=LoggerFactory.getLogger(RequestLogFilter.class);
+	private Logger logger = LoggerFactory.getLogger(RequestLogFilter.class);
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException
+	public void filter(ContainerRequestContext request) throws IOException
 	{
-		logger.debug("Client request: "+request.getMethod()+" "+request.getRequestURI());
+		logger.debug("Client request: " + request.getMethod() + " " + getRelativeUri(request.getUriInfo().getRequestUri()));
+	}
 
-		filterChain.doFilter(request, response);
+	private String getRelativeUri(URI requestUri)
+	{
+		String relativeUri = "";
+
+		relativeUri += requestUri.getPath();
+
+		if(requestUri.getQuery() != null)
+			relativeUri += "?" + requestUri.getQuery();
+
+		return relativeUri;
 	}
 }

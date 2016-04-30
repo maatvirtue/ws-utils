@@ -1,31 +1,28 @@
 package net.maatvirtue.wsutils.filter;
 
-import org.springframework.web.filter.OncePerRequestFilter;
-
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.container.ContainerRequestContext;
+import javax.ws.rs.container.ContainerResponseContext;
+import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 
-public class CorsFilter extends OncePerRequestFilter
+@Provider
+public class CorsFilter implements ContainerResponseFilter
 {
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException
+	public void filter(ContainerRequestContext request, ContainerResponseContext response) throws IOException
 	{
-		if(request.getHeader("Origin")!=null)
+		if(request.getHeaderString("Origin") != null)
 		{
-			response.addHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+			response.getHeaders().add("Access-Control-Allow-Origin", request.getHeaderString("Origin"));
 
-			String requestHeaders=request.getHeader("Access-Control-Request-Headers");
+			String requestHeaders = request.getHeaderString("Access-Control-Request-Headers");
 
-			if(requestHeaders!=null)
-				response.addHeader("Access-Control-Allow-Headers", requestHeaders);
+			if(requestHeaders != null)
+				response.getHeaders().add("Access-Control-Allow-Headers", requestHeaders);
 
-			response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-			response.addHeader("Access-Control-Max-Age", "0");
+			response.getHeaders().add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+			response.getHeaders().add("Access-Control-Max-Age", "0");
 		}
-
-		filterChain.doFilter(request, response);
 	}
 }
