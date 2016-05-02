@@ -13,6 +13,11 @@ public abstract class RestException extends RuntimeException
 		this(null, null, null);
 	}
 
+	public RestException(Throwable throwable)
+	{
+		super(throwable);
+	}
+
 	public RestException(String message)
 	{
 		this(null, null, message);
