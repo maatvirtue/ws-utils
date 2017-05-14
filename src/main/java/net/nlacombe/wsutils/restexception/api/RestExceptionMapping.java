@@ -1,4 +1,4 @@
-package net.maatvirtue.wsutils.restexception.api;
+package net.nlacombe.wsutils.restexception.api;
 
 import javax.ws.rs.core.Response;
 import java.lang.annotation.Documented;

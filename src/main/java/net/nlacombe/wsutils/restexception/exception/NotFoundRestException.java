@@ -1,7 +1,7 @@
-package net.maatvirtue.wsutils.restexception.exception;
+package net.nlacombe.wsutils.restexception.exception;
 
-import net.maatvirtue.wsutils.restexception.api.RestException;
-import net.maatvirtue.wsutils.restexception.api.RestExceptionMapping;
+import net.nlacombe.wsutils.restexception.api.RestException;
+import net.nlacombe.wsutils.restexception.api.RestExceptionMapping;
 
 import javax.ws.rs.core.Response;
 

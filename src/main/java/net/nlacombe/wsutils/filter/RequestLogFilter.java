@@ -1,4 +1,4 @@
-package net.maatvirtue.wsutils.filter;
+package net.nlacombe.wsutils.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

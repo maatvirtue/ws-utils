@@ -1,6 +1,6 @@
-package net.maatvirtue.wsutils.restexception.providers;
+package net.nlacombe.wsutils.restexception.providers;
 
-import net.maatvirtue.wsutils.restexception.impl.RestExceptionScanner;
+import net.nlacombe.wsutils.restexception.impl.RestExceptionScanner;
 
 import javax.ws.rs.core.Feature;
 import javax.ws.rs.core.FeatureContext;

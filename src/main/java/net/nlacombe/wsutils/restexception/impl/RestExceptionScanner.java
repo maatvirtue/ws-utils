@@ -1,8 +1,8 @@
-package net.maatvirtue.wsutils.restexception.impl;
+package net.nlacombe.wsutils.restexception.impl;
 
 import io.github.lukehutch.fastclasspathscanner.FastClasspathScanner;
-import net.maatvirtue.wsutils.restexception.api.RestException;
-import net.maatvirtue.wsutils.restexception.api.RestExceptionMapping;
+import net.nlacombe.wsutils.restexception.api.RestException;
+import net.nlacombe.wsutils.restexception.api.RestExceptionMapping;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,7 +22,7 @@ public class RestExceptionScanner
 	{
 		FastClasspathScanner fastClasspathScanner;
 
-		if(basePackageToScan == null)
+		if (basePackageToScan == null)
 			fastClasspathScanner = new FastClasspathScanner();
 		else
 			fastClasspathScanner = new FastClasspathScanner(basePackageToScan);
@@ -44,11 +44,11 @@ public class RestExceptionScanner
 
 			restExceptionStorage.addRestExceptionClass(code, (Class<? extends RestException>) restExceptionMappingClass);
 		}
-		catch(IllegalArgumentException exception)
+		catch (IllegalArgumentException exception)
 		{
 			logger.warn(exception.getMessage());
 		}
-		catch(RuntimeException exception)
+		catch (RuntimeException exception)
 		{
 			logger.error("Error loading rest exception mapping class: " + restExceptionMappingClass, exception);
 		}
@@ -56,19 +56,19 @@ public class RestExceptionScanner
 
 	private void validateCode(Class<?> restExceptionMappingClass, String code)
 	{
-		if(code == null || code.equals(""))
+		if (code == null || code.equals(""))
 			throw generateError(restExceptionMappingClass, "Class has an empty or null code.");
 	}
 
 	private void validateClassHasNoParamConstructor(Class<?> restExceptionMappingClass)
 	{
-		if(!hasNoParamConstructor(restExceptionMappingClass))
+		if (!hasNoParamConstructor(restExceptionMappingClass))
 			throw generateError(restExceptionMappingClass, "Class does not have a no-param constructor.");
 	}
 
 	private void validateClassIsRestException(Class<?> restExceptionMappingClass)
 	{
-		if(!RestException.class.isAssignableFrom(restExceptionMappingClass))
+		if (!RestException.class.isAssignableFrom(restExceptionMappingClass))
 			throw generateError(restExceptionMappingClass, "Class is not a " + RestException.class.getCanonicalName());
 	}
 
@@ -90,7 +90,7 @@ public class RestExceptionScanner
 			clazz.getConstructor();
 			return true;
 		}
-		catch(NoSuchMethodException e)
+		catch (NoSuchMethodException e)
 		{
 			return false;
 		}

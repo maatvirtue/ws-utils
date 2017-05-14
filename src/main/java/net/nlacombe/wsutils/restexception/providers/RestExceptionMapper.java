@@ -1,10 +1,10 @@
-package net.maatvirtue.wsutils.restexception.providers;
+package net.nlacombe.wsutils.restexception.providers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.maatvirtue.wsutils.restexception.api.RestException;
-import net.maatvirtue.wsutils.restexception.api.RestExceptionMapping;
-import net.maatvirtue.wsutils.restexception.api.RestExceptionResponseBody;
+import net.nlacombe.wsutils.restexception.api.RestException;
+import net.nlacombe.wsutils.restexception.api.RestExceptionMapping;
+import net.nlacombe.wsutils.restexception.api.RestExceptionResponseBody;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
@@ -31,7 +31,7 @@ public class RestExceptionMapper implements ExceptionMapper<RestException>
 		{
 			return jsonConverter.writeValueAsString(restExceptionResponseBody);
 		}
-		catch(JsonProcessingException exception)
+		catch (JsonProcessingException exception)
 		{
 			throw new RuntimeException("Error serializing rest exception", exception);
 		}
@@ -39,16 +39,16 @@ public class RestExceptionMapper implements ExceptionMapper<RestException>
 
 	private void complete(RestException restException)
 	{
-		if(restException.getCode() != null && restException.getHttpStatus() != null)
+		if (restException.getCode() != null && restException.getHttpStatus() != null)
 			return;
 
 		RestExceptionMapping restExceptionMapping = restException.getClass().getAnnotation(RestExceptionMapping.class);
 		String code = restExceptionMapping.value();
 
-		if(restException.getCode() == null)
+		if (restException.getCode() == null)
 			restException.setCode(code);
 
-		if(restException.getHttpStatus() == null)
+		if (restException.getHttpStatus() == null)
 			restException.setHttpStatus(restExceptionMapping.status());
 	}
 }

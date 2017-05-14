@@ -1,4 +1,4 @@
-package net.maatvirtue.wsutils.filter;
+package net.nlacombe.wsutils.filter;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;

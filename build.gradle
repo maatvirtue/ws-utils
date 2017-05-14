@@ -1,10 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'idea'
 
 defaultTasks 'tasks'
 
-group = 'net.maatvirtue'
-version = '2.3.2'
+group = 'net.nlacombe'
+version = '3.0.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -14,11 +15,9 @@ dependencies {
 	compile 'org.apache.cxf:cxf-rt-rs-client:3.1.6'
 	compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
 	compile 'io.github.lukehutch:fast-classpath-scanner:1.9.18'
+	compile 'org.slf4j:slf4j-api:1.7.25'
 
 	compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
-
-	//Logger
-	compile 'org.slf4j:slf4j-api:1.7.25'
 }
 
 repositories {
@@ -52,6 +51,12 @@ artifacts {
 }
 
 task wrapper(type: Wrapper) {
-	gradleVersion = '2.12'
+	gradleVersion = '3.4.1'
 }
 
+idea {
+	module {
+		downloadJavadoc = true
+		downloadSources = false
+	}
+}

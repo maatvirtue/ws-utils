@@ -1,8 +1,8 @@
-package net.maatvirtue.wsutils.restexception.providers;
+package net.nlacombe.wsutils.restexception.providers;
 
-import net.maatvirtue.wsutils.restexception.api.RestException;
-import net.maatvirtue.wsutils.restexception.api.RestExceptionResponseBody;
-import net.maatvirtue.wsutils.restexception.impl.RestExceptionFactory;
+import net.nlacombe.wsutils.restexception.api.RestException;
+import net.nlacombe.wsutils.restexception.api.RestExceptionResponseBody;
+import net.nlacombe.wsutils.restexception.impl.RestExceptionFactory;
 import org.apache.cxf.jaxrs.client.ResponseExceptionMapper;
 
 import javax.ws.rs.core.Response;
@@ -18,7 +18,7 @@ public class RestExceptionCxfClientMapper implements ResponseExceptionMapper<Res
 	{
 		Response.Status httpStatus = Response.Status.fromStatusCode(response.getStatus());
 
-		if(!(httpStatus.getFamily() == Response.Status.Family.CLIENT_ERROR || httpStatus.getFamily() == Response.Status.Family.SERVER_ERROR))
+		if (!(httpStatus.getFamily() == Response.Status.Family.CLIENT_ERROR || httpStatus.getFamily() == Response.Status.Family.SERVER_ERROR))
 			return null;
 
 		RestExceptionResponseBody restExceptionResponseBody = response.readEntity(RestExceptionResponseBody.class);

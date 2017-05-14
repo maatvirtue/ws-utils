@@ -1,6 +1,6 @@
-package net.maatvirtue.wsutils.restexception.impl;
+package net.nlacombe.wsutils.restexception.impl;
 
-import net.maatvirtue.wsutils.restexception.api.RestException;
+import net.nlacombe.wsutils.restexception.api.RestException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ public class RestExceptionStorage
 
 	public static RestExceptionStorage getInstance()
 	{
-		if(instance == null)
+		if (instance == null)
 			instance = new RestExceptionStorage();
 
 		return instance;
@@ -26,7 +26,7 @@ public class RestExceptionStorage
 
 	public void addRestExceptionClass(String code, Class<? extends RestException> restExceptionClass)
 	{
-		if(restExceptions.containsKey(code))
+		if (restExceptions.containsKey(code))
 			throw new IllegalArgumentException("Duplicate code. Code \"" + code + "\" is used for class " +
 					restExceptions.get(code).getCanonicalName() + " and class " + restExceptionClass.getCanonicalName() +
 					". Class " + restExceptionClass.getCanonicalName() + " will be ignored.");

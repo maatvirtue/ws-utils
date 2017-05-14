@@ -1,4 +1,4 @@
-package net.maatvirtue.wsutils.restexception.api;
+package net.nlacombe.wsutils.restexception.api;
 
 public class RestExceptionResponseBody
 {

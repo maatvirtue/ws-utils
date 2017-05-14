@@ -1,7 +1,7 @@
-package net.maatvirtue.wsutils.restexception.providers;
+package net.nlacombe.wsutils.restexception.providers;
 
-import net.maatvirtue.wsutils.restexception.api.RestException;
-import net.maatvirtue.wsutils.restexception.exception.UnknownErrorRestException;
+import net.nlacombe.wsutils.restexception.api.RestException;
+import net.nlacombe.wsutils.restexception.exception.UnknownErrorRestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +21,7 @@ public class GlobalExceptionMapper implements ExceptionMapper<Throwable>
 	{
 		RestException restException;
 
-		if(throwable instanceof RestException)
+		if (throwable instanceof RestException)
 			restException = (RestException) throwable;
 		else
 		{
