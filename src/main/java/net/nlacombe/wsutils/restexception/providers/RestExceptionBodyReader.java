@@ -21,7 +21,7 @@ public class RestExceptionBodyReader implements MessageBodyReader<RestExceptionR
 	@Override
 	public boolean isReadable(Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType)
 	{
-		return type.isAssignableFrom(RestExceptionResponseBody.class) && MediaType.APPLICATION_JSON_TYPE.equals(MediaType.APPLICATION_JSON_TYPE);
+		return type.isAssignableFrom(RestExceptionResponseBody.class) && mediaType.equals(MediaType.APPLICATION_JSON_TYPE);
 	}
 
 	@Override
