@@ -5,17 +5,19 @@ apply plugin: 'idea'
 defaultTasks 'tasks'
 
 group = 'net.nlacombe'
-version = '3.0.1'
+version = '4.0.0'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
 	compile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
-	compile 'org.apache.cxf:cxf-rt-rs-client:3.1.6'
 	compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
 	compile 'io.github.lukehutch:fast-classpath-scanner:1.9.18'
 	compile 'org.slf4j:slf4j-api:1.7.25'
+
+	compile 'org.apache.cxf:cxf-rt-rs-client:3.1.6'
+	compile 'io.github.openfeign:feign-core:9.5.1'
 
 	compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
 }

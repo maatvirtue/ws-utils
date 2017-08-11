@@ -3,8 +3,6 @@ package net.nlacombe.wsutils.restexception.impl;
 import net.nlacombe.wsutils.restexception.api.RestException;
 import net.nlacombe.wsutils.restexception.api.UnknownRestException;
 
-import javax.ws.rs.core.Response;
-
 public class RestExceptionFactory
 {
 	private static RestExceptionFactory instance;
@@ -13,7 +11,6 @@ public class RestExceptionFactory
 
 	private RestExceptionFactory()
 	{
-		//
 	}
 
 	public static RestExceptionFactory getInstance()
@@ -24,7 +21,7 @@ public class RestExceptionFactory
 		return instance;
 	}
 
-	public RestException getRestException(Response.Status httpStatus, String code, String message)
+	public RestException getRestException(int httpStatus, String code, String message)
 	{
 		Class<? extends RestException> restExceptionClass = restExceptionStorage.getRestExceptionClass(code);
 
@@ -33,7 +30,7 @@ public class RestExceptionFactory
 
 		RestException restException = instantiate(restExceptionClass);
 		restException.setHttpStatus(httpStatus);
-		restException.setCode(code);
+		restException.setErrorCode(code);
 		restException.setMessage(message);
 
 		return restException;

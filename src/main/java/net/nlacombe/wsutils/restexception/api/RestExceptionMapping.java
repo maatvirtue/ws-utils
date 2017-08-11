@@ -1,6 +1,7 @@
 package net.nlacombe.wsutils.restexception.api;
 
-import javax.ws.rs.core.Response;
+import net.nlacombe.wsutils.restexception.constants.Constants;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,7 +16,7 @@ public @interface RestExceptionMapping
 	/**
 	 * Unique code for the exception.
 	 */
-	String value() default "";
+	String errorCode();
 
-	Response.Status status() default Response.Status.INTERNAL_SERVER_ERROR;
+	int status() default Constants.DEFAULT_HTTP_STATUS;
 }

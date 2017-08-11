@@ -41,16 +41,13 @@ public class RestExceptionMapper implements ExceptionMapper<RestException>
 
 	private void complete(RestException restException)
 	{
-		if (restException.getCode() != null && restException.getHttpStatus() != null)
+		if (restException.getErrorCode() != null)
 			return;
 
 		RestExceptionMapping restExceptionMapping = restException.getClass().getAnnotation(RestExceptionMapping.class);
-		String code = restExceptionMapping.value();
+		String code = restExceptionMapping.errorCode();
 
-		if (restException.getCode() == null)
-			restException.setCode(code);
-
-		if (restException.getHttpStatus() == null)
-			restException.setHttpStatus(restExceptionMapping.status());
+		if (restException.getErrorCode() == null)
+			restException.setErrorCode(code);
 	}
 }

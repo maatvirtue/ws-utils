@@ -23,6 +23,6 @@ public class RestExceptionCxfClientMapper implements ResponseExceptionMapper<Res
 
 		RestExceptionResponseBody restExceptionResponseBody = response.readEntity(RestExceptionResponseBody.class);
 
-		throw restExceptionFactory.getRestException(httpStatus, restExceptionResponseBody.getCode(), restExceptionResponseBody.getMessage());
+		throw restExceptionFactory.getRestException(httpStatus.getStatusCode(), restExceptionResponseBody.getErrorCode(), restExceptionResponseBody.getMessage());
 	}
 }

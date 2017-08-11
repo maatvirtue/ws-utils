@@ -1,16 +1,16 @@
 package net.nlacombe.wsutils.restexception.api;
 
-import javax.ws.rs.core.Response;
+import net.nlacombe.wsutils.restexception.constants.Constants;
 
 public abstract class RestException extends RuntimeException
 {
-	private Response.Status httpStatus;
-	private String code;
+	private int httpStatus;
+	private String errorCode;
 	private String message;
 
 	public RestException()
 	{
-		this(null, null, null);
+		this(Constants.DEFAULT_HTTP_STATUS, null, null);
 	}
 
 	public RestException(Throwable throwable)
@@ -20,24 +20,60 @@ public abstract class RestException extends RuntimeException
 
 	public RestException(String message)
 	{
-		this(null, null, message);
+		this(Constants.DEFAULT_HTTP_STATUS, null, message);
 	}
 
-	public RestException(Response.Status httpStatus, String message)
+	public RestException(String message, Throwable throwable)
+	{
+		this(Constants.DEFAULT_HTTP_STATUS, null, message, throwable);
+	}
+
+	public RestException(int httpStatus, String message)
 	{
 		this(httpStatus, null, message);
 	}
 
-	public RestException(Response.Status httpStatus, String code, String message)
+	public RestException(int httpStatus, String errorCode, String message)
 	{
+		super(message);
+
 		this.httpStatus = httpStatus;
-		this.code = code;
+		this.errorCode = errorCode;
+		this.message = message;
+	}
+
+	public RestException(int httpStatus, String errorCode, String message, Throwable throwable)
+	{
+		super(message, throwable);
+
+		this.httpStatus = httpStatus;
+		this.errorCode = errorCode;
 		this.message = message;
 	}
 
 	public RestExceptionResponseBody getRestExceptionResponseBody()
 	{
-		return new RestExceptionResponseBody(code, message);
+		return new RestExceptionResponseBody(errorCode, getMessage());
+	}
+
+	public int getHttpStatus()
+	{
+		return httpStatus;
+	}
+
+	public void setHttpStatus(int httpStatus)
+	{
+		this.httpStatus = httpStatus;
+	}
+
+	public String getErrorCode()
+	{
+		return errorCode;
+	}
+
+	public void setErrorCode(String errorCode)
+	{
+		this.errorCode = errorCode;
 	}
 
 	@Override
@@ -49,25 +85,5 @@ public abstract class RestException extends RuntimeException
 	public void setMessage(String message)
 	{
 		this.message = message;
-	}
-
-	public String getCode()
-	{
-		return code;
-	}
-
-	public final void setCode(String code)
-	{
-		this.code = code;
-	}
-
-	public Response.Status getHttpStatus()
-	{
-		return httpStatus;
-	}
-
-	public void setHttpStatus(Response.Status httpStatus)
-	{
-		this.httpStatus = httpStatus;
 	}
 }

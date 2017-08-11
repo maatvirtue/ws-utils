@@ -100,6 +100,6 @@ public class RestExceptionScanner
 	{
 		RestExceptionMapping restExceptionMapping = restExceptionMappingClass.getAnnotation(RestExceptionMapping.class);
 
-		return restExceptionMapping.value();
+		return restExceptionMapping.errorCode();
 	}
 }

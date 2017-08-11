@@ -2,28 +2,27 @@ package net.nlacombe.wsutils.restexception.api;
 
 public class RestExceptionResponseBody
 {
-	private String code;
+	private String errorCode;
 	private String message;
 
 	public RestExceptionResponseBody()
 	{
-		//
 	}
 
-	public RestExceptionResponseBody(String code, String message)
+	public RestExceptionResponseBody(String errorCode, String message)
 	{
-		this.code = code;
+		this.errorCode = errorCode;
 		this.message = message;
 	}
 
-	public String getCode()
+	public String getErrorCode()
 	{
-		return code;
+		return errorCode;
 	}
 
-	public void setCode(String code)
+	public void setErrorCode(String errorCode)
 	{
-		this.code = code;
+		this.errorCode = errorCode;
 	}
 
 	public String getMessage()
