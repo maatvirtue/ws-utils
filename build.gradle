@@ -5,10 +5,10 @@ apply plugin: 'idea'
 defaultTasks 'tasks'
 
 group = 'net.nlacombe'
-version = '4.3.0'
+version = '5.0.0'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 10
+targetCompatibility = 10
 
 dependencies {
 	compile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
@@ -53,8 +53,9 @@ artifacts {
 	archives javadocJar
 }
 
-task wrapper(type: Wrapper) {
-	gradleVersion = '4.6'
+
+wrapper {
+	gradleVersion = '4.9'
 }
 
 idea {
