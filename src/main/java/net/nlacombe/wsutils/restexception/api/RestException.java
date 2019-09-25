@@ -10,17 +10,22 @@ public abstract class RestException extends RuntimeException
 
 	public RestException()
 	{
-		this(Constants.DEFAULT_HTTP_STATUS, null, null);
+		this(Constants.DEFAULT_HTTP_STATUS, null, null, null);
 	}
 
 	public RestException(Throwable throwable)
 	{
-		super(throwable);
+		this(Constants.DEFAULT_HTTP_STATUS, null, null, throwable);
+	}
+
+	public RestException(int httpStatus)
+	{
+		this(httpStatus, null, null, null);
 	}
 
 	public RestException(String message)
 	{
-		this(Constants.DEFAULT_HTTP_STATUS, null, message);
+		this(Constants.DEFAULT_HTTP_STATUS, null, message, null);
 	}
 
 	public RestException(String message, Throwable throwable)
@@ -30,16 +35,12 @@ public abstract class RestException extends RuntimeException
 
 	public RestException(int httpStatus, String message)
 	{
-		this(httpStatus, null, message);
+		this(httpStatus, null, message, null);
 	}
 
 	public RestException(int httpStatus, String errorCode, String message)
 	{
-		super(message);
-
-		this.httpStatus = httpStatus;
-		this.errorCode = errorCode;
-		this.message = message;
+		this(httpStatus, errorCode, message, null);
 	}
 
 	public RestException(int httpStatus, String errorCode, String message, Throwable throwable)

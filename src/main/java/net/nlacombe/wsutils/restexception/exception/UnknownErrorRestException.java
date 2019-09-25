@@ -3,7 +3,7 @@ package net.nlacombe.wsutils.restexception.exception;
 import net.nlacombe.wsutils.restexception.api.RestException;
 import net.nlacombe.wsutils.restexception.api.RestExceptionMapping;
 
-@RestExceptionMapping(errorCode = "unknown-error", status = 500)
+@RestExceptionMapping(errorCode = "unknown-error")
 public class UnknownErrorRestException extends RestException
 {
 	public UnknownErrorRestException()
