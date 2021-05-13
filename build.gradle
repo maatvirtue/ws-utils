@@ -1,24 +1,19 @@
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'idea'
-
-defaultTasks 'tasks'
+plugins {
+	id 'java-library'
+	id 'maven-publish'
+}
 
 group = 'net.nlacombe'
-version = '6.0.0'
-
-sourceCompatibility = 12
-targetCompatibility = 12
+version = '7.0.0'
 
 dependencies {
-	compile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
-	compile 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
-	compile 'io.github.lukehutch:fast-classpath-scanner:1.9.18'
-	compile 'org.slf4j:slf4j-api:1.7.25'
-	compile 'commons-io:commons-io:2.5'
-
-	compile 'org.apache.cxf:cxf-rt-rs-client:3.1.6'
-	compile 'io.github.openfeign:feign-core:9.5.1'
+	implementation 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.7.3'
+	implementation 'io.github.lukehutch:fast-classpath-scanner:1.9.18'
+	implementation 'org.slf4j:slf4j-api:1.7.25'
+	implementation 'commons-io:commons-io:2.5'
+	implementation 'org.apache.cxf:cxf-rt-rs-client:3.1.6'
+	implementation 'io.github.openfeign:feign-core:9.5.1'
 
 	compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
 }
@@ -28,39 +23,26 @@ repositories {
 	mavenLocal()
 }
 
-uploadArchives {
-	repositories {
-		mavenLocal()
-	}
-}
-
 javadoc {
 	options.addStringOption('Xdoclint:none', '-quiet')
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
-	classifier = 'sources'
-	from sourceSets.main.allSource
+java {
+	sourceCompatibility = JavaVersion.VERSION_11
+	targetCompatibility = JavaVersion.VERSION_11
+
+	withJavadocJar()
+	withSourcesJar()
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-	classifier = 'javadoc'
-	from javadoc.destinationDir
+publishing {
+	publications {
+		wsUtils(MavenPublication) {
+			from components.java
+		}
+	}
 }
-
-artifacts {
-	archives sourcesJar
-	archives javadocJar
-}
-
 
 wrapper {
-	gradleVersion = '5.6.2'
-}
-
-idea {
-	module {
-		downloadJavadoc = true
-		downloadSources = false
-	}
+	gradleVersion = '7.0.1'
 }
